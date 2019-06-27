@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ALL POST HERE</title>
+</head>
+<body>
+@each(post in posts)
+  <a href = "/posts/{{ post.id }}">{{ post.title }}</a><br>{{post.desc}}
+@endeach
+</body>
+</html>
