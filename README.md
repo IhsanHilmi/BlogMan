@@ -29,3 +29,11 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
+#### PostGreSQL Initialition
+
+'npm i --save pg'
+The name of the database is BlogManDB
+The tables are :
+1. Userdata
+2. Posts
+

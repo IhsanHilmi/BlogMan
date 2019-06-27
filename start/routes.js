@@ -13,7 +13,26 @@
 |
 */
 
-/** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+
+Route.get('/register', 'Form/RegisterController.index')
+
+Route.get('/register', 'Form/FormController.register').as('register')
+
+Route.get('/login', 'Form/LoginController.loginForm')
+
+Route.get('/login','Form/LoginController').as('login')
+
+Route.get('/register/confirm/:token', 'Auth/RegisterController.confirm')
+
+Route.get('/posts', 'PostController.index')
+
+Route.get('/posts/add', 'PostController.add')
+
+Route.get('/posts/edit/:id', 'PostController.edit')
+
+Route.get('/posts/:id', 'PostController.data')
+
+Route.get('/logout', 'Form/LoginController.logout')
