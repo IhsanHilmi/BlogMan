@@ -1,6 +1,6 @@
 'use strict'
 
-const User = use('App/Models/User')
+const User = use('App/Models/Userdata')
 const {validate} = use('Validator')
 const Mail = use('Mail')
 const randomString = require('random-string')
@@ -12,8 +12,8 @@ class RegisterController {
 
     async register({request, session, response}){
         const validation = await validate(request.all(),{
-            username: `required|unique:users,username`,
-            email:'required|email|unique:users,email',
+            username: `required|unique:userdata,username`,
+            email:'required|email|unique:userdata,email',
             password:'required'
         })
 
@@ -26,10 +26,10 @@ class RegisterController {
             username: request.input('in_username'),
             email: request.input('in_email'),
             password: request.input('in_password'),
-            confirmation_token: randomString({length:25})
+            token: randomString({length:40})
         })
 
-        await Mail.send('auth.emails.confirm_email', user.toJSON(), message =>{
+        await Mail.send('auth.emails.verification', user.toJSON(), Message =>{
             Message.to(user.email)
             .from('noreply@blogman.com')
             .subject('Please confirm your email address')
@@ -45,10 +45,10 @@ class RegisterController {
         return response.redirect('back')
     }
 
-    async confirmEmail({params, session, response}){
-        const user = await User.findBy('confirmation_token', params.token)
+    async confirmed({params, session, response}){
+        const user = await User.findBy('token', params.token)
 
-        user.confirmation_token = null
+        user.token = null
         
         await user.save()
 
