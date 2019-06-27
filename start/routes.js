@@ -33,10 +33,8 @@ Route.get('/posts/edit/:id', 'PostController.edit')
 
 Route.get('/posts/:id', 'PostController.data')
 
-<<<<<<< HEAD
 Route.get('/logout', 'Form/LoginController.logout')
-=======
+
 Route.get('/posts/add', 'PostController.add')
 
 Route.get('/logout', 'Form/LoginController.logout')
->>>>>>> 3b97c374260110ccaa5ccd5234c9c1f61839e747
