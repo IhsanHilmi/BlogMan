@@ -7,7 +7,7 @@ const randomString = require('random-string')
 
 class RegisterController {
     async index({view}){
-        return view.render('')
+        return view.render('register')
     }
 
     async register({request, session, response}){
@@ -31,14 +31,31 @@ class RegisterController {
 
         await Mail.send('auth.emails.confirm_email', user.toJSON(), message =>{
             Message.to(user.email)
-            from('noreply@blogman.com')
-            subject('Please confirm your email address')
+            .from('noreply@blogman.com')
+            .subject('Please confirm your email address')
         })
 
         session.flash({
             notification:{
                 type: 'success',
-                message: 'Your email address has been registered!'
+                message: 'An email verification has been sent!'
+            }
+        })
+
+        return response.redirect('back')
+    }
+
+    async confirmEmail({params, session, response}){
+        const user = await User.findBy('confirmation_token', params.token)
+
+        user.confirmation_token = null
+        
+        await user.save()
+
+        session.flash({
+            notification: {
+                type: 'success',
+                message: 'Email has been verified!'
             }
         })
 
