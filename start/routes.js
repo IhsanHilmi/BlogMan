@@ -19,7 +19,7 @@ Route.on('/').render('welcome')
 
 Route.get('/register', 'Form/RegisterController.index')
 
-Route.get('/register', 'Form/FormController.register').as('register')
+Route.get('/register', 'Form/RegisterController.register').as('register')
 
 Route.get('/login', 'Form/LoginController.loginForm')
 
