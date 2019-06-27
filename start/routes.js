@@ -19,13 +19,13 @@ Route.on('/').render('welcome')
 
 Route.get('/register', 'Form/RegisterController.index')
 
-Route.get('/register', 'Form/RegisterController.register').as('register')
+Route.post('/register', 'Form/RegisterController.register').as('register')
 
-Route.get('/login', 'Form/LoginController.loginForm')
+Route.get('/login', 'Form/LoginController.index')
 
-Route.get('/login','Form/LoginController').as('login')
+Route.post('/login','Form/LoginController').as('login')
 
-Route.get('/register/confirm/:token', 'Auth/RegisterController.confirm')
+Route.get('/register/confirm/:token', 'Form/RegisterController.confirmed')
 
 Route.get('/posts', 'PostController.index')
 
