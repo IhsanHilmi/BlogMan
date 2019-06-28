@@ -32,6 +32,11 @@ class LoginController {
 
         return response.route('error')
     }
+
+    async logout({session, response}){
+        await session.forget('uid_now')
+        return response.redirect('/')
+    }
 }
 
 module.exports = LoginController
