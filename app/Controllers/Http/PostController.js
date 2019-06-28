@@ -58,13 +58,20 @@ class PostController {
         return response.redirect('/posts')
 	}
 
-    async details ({params,view}) {
+    async details ({session,params,view}) {
         // body... 
     
         const post = await Post.find(params.id)
+        const uid_now = await session.get('uid_now')
+        var state = false
+        if(uid_now == post.user_id){
+            state = true
+        }
 
         return view.render('posts/edit',{
-            post:post.toJSON()
+            post:post.toJSON(),
+            uid_now:uid_now,
+            state:state
         })
     }
 
