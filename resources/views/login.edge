@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    {{style('style')}}
 </head>
 <body>
-    <form action="{{route('login')}}" method="post">
+    <div class="form_login">
+    <form class="coverLogin" action="{{route('login')}}" method="post">
     {{ csrfField() }}
-        <input type="text" placeholder="username/email" name="in_param" id="1">
-        <input type="password" placeholder="password" name="in_password" id="2">
-        <input type="submit" value="Login">
+        <input type="text" class="txtUser" placeholder="username/email" name="in_param" id="1">
+        <input type="password" class="txtPass" placeholder="password" name="in_password" id="2">
+        <div>
+            <img class="coverLogo">
+        </div>
+        <div>
+            <input type="submit" class="btnLogin" value="Login">
+        </div>
     </form>
 </body>
 </html>
