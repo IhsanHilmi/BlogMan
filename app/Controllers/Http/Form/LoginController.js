@@ -25,6 +25,7 @@ class LoginController {
             const verified = await Hash.verify(in_password,user.password)
 
             if(verified){
+                session.put('uid_now',user.id)
                 return response.route('posts')
             }
         }
