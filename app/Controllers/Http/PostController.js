@@ -11,15 +11,15 @@ class PostController {
 	async index ({view}) {
 		// body... 
 		
-		const userinfos = await Userinfo
+		const posts = await Post
   		.query()
-  		.with('posts')
+  		.with('userinfo')
   		.fetch()
 
 
         return view.render('main', {
             title: 'Latest Post',
-            userinfos: userinfos.toJSON()
+            posts: posts.toJSON()
         })
 	}
 

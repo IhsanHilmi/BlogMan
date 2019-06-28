@@ -27,6 +27,7 @@
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/validator": "^5.0.6",
+    "nodemon": "^1.19.1",
     "pg": "^7.11.0",
     "random-string": "^0.2.0"
   },
