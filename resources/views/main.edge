@@ -4,11 +4,9 @@
 	<title>ALL POST HERE</title>
 </head>
 <body>
-@each(userinfo in userinfos)
-@each(post in userinfo.posts)
-  <a href = "/posts/{{ post.id }}">{{ post.title }}</a><br>{{post.desc}}<br>
-@endeach
-	<p>by {{userinfo.username}}</p>
+@each(post in posts)
+	<a href = "/posts/{{ post.id }}">{{ post.title }}</a><br>{{post.desc}}<br>
+	<p>by {{post.userinfo.username}}</p>
 @endeach
 </body>
 </html>
