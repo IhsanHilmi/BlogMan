@@ -45,7 +45,7 @@ class RegisterController {
         const user = await User.findBy('token', params.token)
 
         user.token = null
-        
+        user.status = true
         await user.save()
         return response.redirect('/login')
     }

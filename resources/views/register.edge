@@ -9,9 +9,9 @@
 <body>
     <form action="{{route('register')}}" method="post">
     {{csrfField()}}
-        <input type="text" placeholder= "nama" name="in_username" id="1">
-        <input type="email" placeholder="email" name="in_email" id="2">
-        <input type="password" placeholder="password" name="in_password" id="3">
+        <input type="text" placeholder= "nama" name="in_username" id="1" value="{{ old('in_username', '')}}">
+        <input type="email" placeholder="email" name="in_email" id="2" value="{{ old('in_email', '')}}">
+        <input type="password" placeholder="password" name="in_password" id="3"  value="{{ old('in_password', '')}}">
         <input type="submit" value="Test">
     </form>
 </body>
