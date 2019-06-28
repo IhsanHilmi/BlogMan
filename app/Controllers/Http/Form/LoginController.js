@@ -7,30 +7,45 @@ class LoginController {
     async index({auth, view, response}){
         try{
             await auth.check()
-            return response.route('home')
+            return response.redirect('home')
         }catch(error){
             return view.render('login')
         }
     }
 
     async login({request, auth, session, response}){
-        const {in_email, in_password} = request.all()
+        const {in_param, in_password} = request.all()
 
-        const user = await User.query()
-        .where('email', in_email)
+        const usercheck1 = await User.query()
+        .where('email', in_param)
         .where('status', true)
         .first()
 
-        if(user){
-            const verified = await Hash.verify(in_password,user.password)
+        if(usercheck1){
+            const verified = await Hash.verify(in_password,usercheck1.password)
         
             if(verified){
-                session.put('uid_now',user.id)
-                return response.route('posts')
+                session.put('uid_now',usercheck1.id)
+                return response.redirect('posts')
+            }
+        }
+        else{
+            const usercheck2 = await User.query()
+            .where('username', in_param)
+            .where('status', true)
+            .first()
+
+            if(usercheck2){
+                const verified2 = await Hash.verify(in_password, usercheck2.password)
+
+                if(verified2){
+                    session.put('uid_now', usercheck2.id)
+                    return response.redirect('posts')
+                }
             }
         }
 
-        return response.route('error')
+        return response.redirect('error')
     }
 
     async logout({session, response}){
