@@ -1,6 +1,6 @@
 'use strict'
 
-const User = use('App/Models/Userdata')
+const User = use('App/Models/Userinfo')
 const {validate} = use('Validator')
 const Mail = use('Mail')
 const randomString = require('random-string')
@@ -9,17 +9,20 @@ class RegisterController {
     async index({view}){
         return view.render('register')
     }
+    async error({view}){
+        return view.render('error')
+    }
 
     async register({request, session, response}){
+        
         const validation = await validate(request.all(),{
-            username: `required|unique:userdata,username`,
-            email:'required|email|unique:userdata,email',
-            password:'required'
+            in_username: `required|unique:userinfos,username`,
+            in_email:'required|email|unique:userinfos,email',
+            in_password:'required'
         })
 
         if(validation.fails()){
-            session.withErrors(validation.messages()).flashAll()
-            return response.redirect('back')
+            return response.redirect('/error')
         }
 
         const user = await User.create({
@@ -29,17 +32,10 @@ class RegisterController {
             token: randomString({length:40})
         })
 
-        await Mail.send('auth.emails.verification', user.toJSON(), Message =>{
-            Message.to(user.email)
+        await Mail.send('emails.verify', user.toJSON(), givemessage =>{
+            givemessage.to(user.email)
             .from('noreply@blogman.com')
             .subject('Please confirm your email address')
-        })
-
-        session.flash({
-            notification:{
-                type: 'success',
-                message: 'An email verification has been sent!'
-            }
         })
 
         return response.redirect('back')
@@ -51,14 +47,6 @@ class RegisterController {
         user.token = null
         
         await user.save()
-
-        session.flash({
-            notification: {
-                type: 'success',
-                message: 'Email has been verified!'
-            }
-        })
-
         return response.redirect('/login')
     }
 }

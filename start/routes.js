@@ -33,9 +33,6 @@ Route.get('/posts/edit/:id', 'PostController.edit')
 
 Route.get('/posts/:id', 'PostController.data')
 
-<<<<<<< HEAD
-Route.get('/logout', 'Form/LoginController.logout')
-=======
 Route.get('/posts/add', 'PostController.add')
 
 Route.get('/logout', 'Form/LoginController.logout')
