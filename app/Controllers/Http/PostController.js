@@ -1,6 +1,8 @@
 'use strict'
 const Post = use('App/Models/Post')
 
+const Userinfo = use('App/Models/Userinfo')
+
 const { validate } = use('Validator')
 
 class PostController {
@@ -8,11 +10,16 @@ class PostController {
 	
 	async index ({view}) {
 		// body... 
-		const posts = await Post.all()
+		
+		const userinfos = await Userinfo
+  		.query()
+  		.with('posts')
+  		.fetch()
+
 
         return view.render('main', {
             title: 'Latest Post',
-            posts: posts.toJSON()
+            userinfos: userinfos.toJSON()
         })
 	}
 
