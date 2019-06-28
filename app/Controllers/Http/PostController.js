@@ -16,6 +16,12 @@ class PostController {
   		.with('userinfo')
   		.fetch()
 
+        if (posts == null) {
+            return view.render('main', {
+                title: 'Latest Post',
+                posts: posts.toJSON()
+            })
+        }
 
         return view.render('main', {
             title: 'Latest Post',
@@ -29,7 +35,7 @@ class PostController {
 
 	async input ({session,request,response}){
 		
-		/*const validation = await validate(request.all(), {
+		const validation = await validate(request.all(), {
             in_title: 'required|min:5|max:100',
             in_desc:'required|min:3'
         })
@@ -37,13 +43,13 @@ class PostController {
         if (validation.fails()){
             session.withErrors(validation.messages()).flashAll()
             return response.redirect('back')
-        }*/
+        }
 
         const newpost = new Post()
 
         newpost.title = request.input('in_title')
         newpost.desc = request.input('in_desc')
-        newpost.user_id = 1
+        newpost.user_id = session.get('uid_now')
 
         await newpost.save()
 
@@ -52,6 +58,45 @@ class PostController {
         return response.redirect('/posts')
 	}
 
+    async details ({params,view}) {
+        // body... 
+    
+        const post = await Post.find(params.id)
+
+        return view.render('posts/edit',{
+            post:post.toJSON()
+        })
+    }
+
+    async edit({request,response,session}){
+
+        const validation = await validate(request.all(), {
+            in_title: 'required|min:5|max:100',
+            in_desc:'required|min:3'
+        })
+
+        if (validation.fails()){
+            session.withErrors(validation.messages()).flashAll()
+            return response.redirect('back')
+        }
+        const post = await Post.find(request.input('in_id'))
+
+        post.user_id = request.input('in_uid')
+        post.title = request.input('in_title')
+        post.desc = request.input('in_desc')
+
+        post.save()
+
+        return response.redirect('/posts')
+    }
+    
+    async delete ({params,response,session}){
+        const post = await Post.find(params.id)
+        
+        post.delete()
+
+        return response.redirect('back')
+    }
 
 }
 
