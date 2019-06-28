@@ -15,15 +15,13 @@
 
 const Route = use('Route')
 
-Route.on('/').render('welcome')
-
 Route.get('/register', 'Form/RegisterController.index')
 
 Route.post('/register', 'Form/RegisterController.register').as('register')
 
 Route.get('/login', 'Form/LoginController.index')
 
-Route.post('/login','Form/LoginController').as('login')
+Route.post('/login','Form/LoginController.login').as('login')
 
 Route.get('/register/confirm/:token', 'Form/RegisterController.confirmed')
 

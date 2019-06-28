@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <div>Logged</div>
+    <form action="{{route('login')}}" method="post">
+    {{ csrfField() }}
+        <input type="email" name="in_email" id="1">
+        <input type="password" name="in_password" id="2">
+        <input type="submit" value="Login">
+    </form>
 </body>
 </html>
