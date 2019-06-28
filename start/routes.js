@@ -31,10 +31,12 @@ Route.get('/posts', 'PostController.index')
 
 Route.get('/posts/edit/:id', 'PostController.edit')
 
-Route.get('/posts/:id', 'PostController.data')
+//Route.get('/posts/:id', 'PostController.data')
 
 Route.get('/logout', 'Form/LoginController.logout')
 
 Route.get('/posts/add', 'PostController.add')
+
+Route.post('/posts/add', 'PostController.input')
 
 Route.get('/logout', 'Form/LoginController.logout')
