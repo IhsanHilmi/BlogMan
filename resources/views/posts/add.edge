@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form action='/posts/add' method="POST">
+		{{ csrfField() }}
+	<input type="text" name="in_title" placeholder="the title">
+	<br>
+	<textarea name="in_desc" placeholder="tell your story here..."></textarea>
+	<button>Submit</button>
+	</form>
+</body>
+</html>
