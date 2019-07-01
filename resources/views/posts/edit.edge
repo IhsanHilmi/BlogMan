@@ -11,11 +11,9 @@
 	<input type="text" name="in_title" placeholder={{post.title}}>
 	<br>
 	<textarea name="in_desc" placeholder={{post.desc}}></textarea>
-	@if(state)
 		<button>Submit</button>
 	</form>
 	<a href="/posts/{{post.id}}/delete">DELETE</a>
-	@endif
 
 </body>
 </html>

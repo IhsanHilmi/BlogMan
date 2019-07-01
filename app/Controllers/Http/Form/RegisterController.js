@@ -7,21 +7,13 @@ const randomString = require('random-string')
 
 class RegisterController {
     async index({view,session,response}){
-        
-        if (session.get('uid_now')==null) {
-                // statement
+
                 return view.render('register')
-            } else {
-                // statement
-                return response.redirect('/')
-            }
+            
     }
 
     async register({request, session, response}){
 
-        if(session.get('uid_now') != null){
-            return response.redirect('/posts')
-        }
         
         const validation = await validate(request.all(),{
             in_username: `required|unique:userinfos,username`,

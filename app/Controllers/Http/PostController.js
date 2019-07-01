@@ -7,19 +7,35 @@ const { validate } = use('Validator')
 
 class PostController {
 
-	
-	async index ({view}) {
+	async index ({view}){
+        const posts = await Post
+        .query()
+        .with('userinfo')
+        .fetch()
+
+        if (posts == null) {
+            return view.render('main', {
+                title: 'No Posts Yet'
+            })
+        }
+        return view.render('welcome', {
+            title: 'Latest Post',
+            posts: posts.toJSON()
+        })
+    }
+
+	async myposts ({view,session}) {
 		// body... 
 		
 		const posts = await Post
   		.query()
   		.with('userinfo')
+        .where('user_id',session.get('uid_now'))
   		.fetch()
 
         if (posts == null) {
             return view.render('main', {
-                title: 'Latest Post',
-                posts: posts.toJSON()
+                title: 'No post yet'
             })
         }
 
@@ -49,7 +65,7 @@ class PostController {
 
         newpost.title = request.input('in_title')
         newpost.desc = request.input('in_desc')
-        newpost.user_id = session.get('uid_now')
+        newpost.user_id = 3
 
         await newpost.save()
 
@@ -62,16 +78,9 @@ class PostController {
         // body... 
     
         const post = await Post.find(params.id)
-        const uid_now = await session.get('uid_now')
-        var state = false
-        if(uid_now == post.user_id){
-            state = true
-        }
 
         return view.render('posts/edit',{
             post:post.toJSON(),
-            uid_now:uid_now,
-            state:state
         })
     }
 
@@ -102,7 +111,7 @@ class PostController {
         
         post.delete()
 
-        return response.redirect('back')
+        return response.redirect('/posts')
     }
 
 }
