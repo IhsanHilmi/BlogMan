@@ -666,6 +666,7 @@ footer .copyright {
   border:black;
   font-size: 18px;
   padding: 10px 16px;
+  word-wrap: break-word;
 }
 
 .titles{
@@ -675,6 +676,7 @@ footer .copyright {
   border:black;
   font-size: 22px;
   padding: 8px 16px;
+  word-wrap: break-word;
 }
 
 .warning:hover{
