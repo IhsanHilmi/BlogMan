@@ -33,7 +33,7 @@ Route.get('/posts/:id', 'PostController.details')
 
 Route.get('/posts/:id/delete', 'PostController.delete')
 
-//Route.get('/posts/:id', 'PostController.data')
+Route.post('/posts/:id', 'PostController.edit')
 
 Route.get('/new-post', 'PostController.add')
 
