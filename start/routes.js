@@ -35,10 +35,10 @@ Route.get('/posts/:id/delete', 'PostController.delete')
 
 //Route.get('/posts/:id', 'PostController.data')
 
-Route.get('/posts/add', 'PostController.add')
+Route.get('/new-post', 'PostController.add')
 
-Route.post('/posts/add', 'PostController.input')
+Route.post('/new-post', 'PostController.input')
 
-Route.get('/logout', 'Form/LoginController.logout').as('logout')
+Route.get('/logout', 'LogoutController.logout').as('logout')
 
 Route.get('/error', 'Form/RegisterController.error')

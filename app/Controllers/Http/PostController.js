@@ -9,7 +9,7 @@ class PostController {
 
 	async index ({view,session}){
         
-        const uid = await session.get('uid_now')
+        const uid = session.get('uid_now')
 
         const posts = await Post
         .query()
@@ -18,12 +18,14 @@ class PostController {
 
         if (posts == null) {
             return view.render('welcome', {
-                title: 'No Posts Yet'
+                title: 'No Posts Yet',
+                uid:uid
             })
         }
         return view.render('welcome', {
             title: 'Latest Post',
-            posts: posts.toJSON()
+            posts: posts.toJSON(),
+            uid:uid
         })
     }
 
@@ -100,13 +102,13 @@ class PostController {
         }
         const post = await Post.find(request.input('in_id'))
 
-        post.user_id = 3
+        post.user_id = request.input('in_uid')
         post.title = request.input('in_title')
         post.desc = request.input('in_desc')
 
         post.save()
 
-        return response.redirect('/')
+        return response.redirect('/posts')
     }
     
     async delete ({params,response,session}){
