@@ -20,9 +20,9 @@
    <div><img class="coverLogo2">  </div>
    <div> </div>
     </form>
-    {{ elIf('<span class="warning a">⚠ $self</span>', getErrorFor('in_username'), hasErrorFor('in_username')) }}
-    {{ elIf('<span class="warning b">⚠ $self</span>', getErrorFor('in_email'), hasErrorFor('in_email')) }}
-    {{ elIf('<span class="warning c">⚠ $self</span>', getErrorFor('in_password'), hasErrorFor('in_password')) }}
+    {{ elIf('<span class="warning">⚠ $self</span>', getErrorFor('in_username'), hasErrorFor('in_username')) }}
+    {{ elIf('<span class="warning">⚠ $self</span>', getErrorFor('in_email'), hasErrorFor('in_email')) }}
+    {{ elIf('<span class="warning">⚠ $self</span>', getErrorFor('in_password'), hasErrorFor('in_password')) }}
     @if(flashMessage('notification'))
         <span class="success d">ℹ {{flashMessage('notification.message')}}</span>
     @endif
@@ -30,17 +30,8 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('.a').click(function() {
-            $('.a').hide();
-        });
-        $('.b').click(function() {
-            $('.b').hide();
-        });
-        $('.c').click(function() {
-            $('.c').hide();
-        });
-        $('.d').click(function() {
-            $('.d').hide();
+        $('.warning').click(function() {
+            $('.warning').hide();
         });
     });
 </script>
