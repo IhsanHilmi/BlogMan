@@ -27,6 +27,10 @@ Route.get('/register/confirm/:token', 'Form/RegisterController.confirmed')
 
 Route.get('/', 'PostController.index').as('posts')
 
+Route.get('/myposts', 'PostController.myposts')
+
+Route.post('/myposts', 'PostController.input').as('myposts')
+
 Route.get('/posts/:id', 'PostController.details')
 
 Route.post('/posts/:id', 'PostController.edit')
@@ -35,9 +39,9 @@ Route.get('/posts/:id/delete', 'PostController.delete')
 
 //Route.get('/posts/:id', 'PostController.data')
 
-Route.get('/posts/add', 'PostController.add')
+Route.get('/myposts/add', 'PostController.add')
 
-Route.post('/posts/add', 'PostController.input')
+Route.post('/myposts/add', 'PostController.input')
 
 Route.get('/logout', 'Form/LoginController.logout').as('logout')
 

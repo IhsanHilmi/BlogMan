@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>New Posts</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
 </head>
 <body>
-	<form action='/new-post' method="POST">
+	<form action='{{route('myposts')}}' method="POST">
 		{{ csrfField() }}
 	<input type="text" name="in_title" placeholder="the title">
 	<br>
@@ -12,4 +16,125 @@
 	<button>Submit</button>
 	</form>
 </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <link href="css/css.css" rel="stylesheet">
+
+
+  <title>Clean Blog - Start Bootstrap Theme</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/css.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">First</a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/index">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/post">Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="post.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Signup</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/1.jpg')">
+
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mx-auto">
+          <div class="post-heading">
+            <h2>Add New Post</h2>
+            <input type="textname" name="text" placeholder="Tittle" size="39" >
+            <br><br>
+           <textarea cols="40" rows="10" name="desc" placeholder="Description"></textarea>
+           <br>
+           <input type="button" class="btn btn-primary" name="publis" value="publish" placeholder="Publish">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+<center>
+  <link href="css/style.css" rel="stylesheet">
+         <section id="call-to-action" class="wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+     <input type="text" name="name" placeholder="Your name" size="30">
+     <br><br>
+              </div>
+               <input type="text" name="name" placeholder="Your name" size="30">
+               </div>
+               <br><br>
+                <input type="text" name="name" placeholder="Your name" size="30">
+              </div>
+      </div>
+    </section><!-- #call-to-action -->
+
+        
+      <!-- #contact -->
+
+  </main>
+
+      </div>
+    </section><!-- #contact -->
+
+  </main>
+  </article>
+  <br><br>
+
+  <!-- Footer -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  
+   <div class="content">
+       <!--Sobat bisa gunakan Text Lorem Ipsum disini-->
+   </div>
+   <div class="footer">
+     © Copyright <strong>First Project</strong>. All Rights Reserved
+   </div>
+</div><!-- #footer -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
 </html>

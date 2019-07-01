@@ -23,6 +23,9 @@
     {{ elIf('<span class="warning a">⚠ $self</span>', getErrorFor('in_username'), hasErrorFor('in_username')) }}
     {{ elIf('<span class="warning b">⚠ $self</span>', getErrorFor('in_email'), hasErrorFor('in_email')) }}
     {{ elIf('<span class="warning c">⚠ $self</span>', getErrorFor('in_password'), hasErrorFor('in_password')) }}
+    @if(flashMessage('notification'))
+        <span class="success d">ℹ {{flashMessage('notification.message')}}</span>
+    @endif
 </body>
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
@@ -31,10 +34,13 @@
             $('.a').hide();
         });
         $('.b').click(function() {
-            $('.a').hide();
+            $('.b').hide();
         });
         $('.c').click(function() {
-            $('.a').hide();
+            $('.c').hide();
+        });
+        $('.d').click(function() {
+            $('.d').hide();
         });
     });
 </script>

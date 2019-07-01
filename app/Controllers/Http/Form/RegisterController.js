@@ -38,7 +38,13 @@ class RegisterController {
             .from('noreply@blogman.com')
             .subject('Please confirm your email address')
         })
-
+        
+        session.flash({
+            notification:{
+                type: 'success',
+                message: 'An email verification has been sent!'
+            }
+        })
         return response.redirect('back')
     }
 

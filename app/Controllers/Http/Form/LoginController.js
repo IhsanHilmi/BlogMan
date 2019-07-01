@@ -32,7 +32,7 @@ class LoginController {
         
             if(verified){
                 await session.put('uid_now',usercheck1.id)
-                return response.redirect('register')
+                return response.redirect('/')
             }
             else{
                 session.withErrors(validation.messages()).flashAll()
@@ -50,7 +50,7 @@ class LoginController {
 
                 if(verified2){
                     await session.put('uid_now', usercheck2.id)
-                    return response.redirect('register')
+                    return response.redirect('/')
                 }
                 else{
                     session.withErrors(validation.messages()).flashAll()

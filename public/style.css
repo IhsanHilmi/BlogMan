@@ -666,7 +666,12 @@ footer .copyright {
   border:black;
   font-size: 18px;
   padding: 10px 16px;
+  text-align: justify;
   word-wrap: break-word;
+}
+
+.success{
+  background: #20d649;
 }
 
 .titles{
@@ -679,9 +684,6 @@ footer .copyright {
   word-wrap: break-word;
 }
 
-.post-title{
-  
-}
 
 .warning:hover{
   cursor: pointer;

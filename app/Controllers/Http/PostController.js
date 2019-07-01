@@ -14,6 +14,7 @@ class PostController {
         const posts = await Post
         .query()
         .with('userinfo')
+        .orderBy('created_at', 'desc')
         .fetch()
 
         if (posts == null) {
@@ -28,26 +29,26 @@ class PostController {
     }
 
 	async myposts ({view,session}) {
-		// body... 
 		
 		const posts = await Post
   		.query()
   		.with('userinfo')
-        .where('user_id',session.get('uid_now'))
+        .where('user_id',3)
+        .orderBy('created_at', 'desc')
   		.fetch()
 
         if (posts == null) {
-            return view.render('main', {
+            return view.render('myposts', {
                 title: 'No post yet'
             })
         }
 
-        return view.render('main', {
-            title: 'Latest Post',
+        return view.render('myposts', {
+            title: 'My Posts',
             posts: posts.toJSON()
         })
-	}
-
+    }
+    
 	async add ({view}){
 		return view.render('posts/add')
 	}
@@ -74,7 +75,7 @@ class PostController {
 
         session.flash({ notification: 'Post Added!'})
 
-        return response.redirect('/posts')
+        return response.redirect('/myposts')
 	}
 
     async details ({session,params,view}) {
@@ -104,7 +105,7 @@ class PostController {
         post.title = request.input('in_title')
         post.desc = request.input('in_desc')
 
-        post.save()
+        await post.save()
 
         return response.redirect('/')
     }
@@ -114,7 +115,7 @@ class PostController {
         
         post.delete()
 
-        return response.redirect('/posts')
+        return response.redirect('/')
     }
 
 }
