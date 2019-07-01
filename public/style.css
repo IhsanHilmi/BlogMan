@@ -679,6 +679,10 @@ footer .copyright {
   word-wrap: break-word;
 }
 
+.post-title{
+  
+}
+
 .warning:hover{
   cursor: pointer;
 }
