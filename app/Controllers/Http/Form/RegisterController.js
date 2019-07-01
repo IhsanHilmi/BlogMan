@@ -30,7 +30,8 @@ class RegisterController {
         })
 
         if(validation.fails()){
-            return response.redirect('/error')
+            session.withErrors(validation.messages()).flashAll()
+            return response.redirect('back')
         }
 
         const user = await User.create({

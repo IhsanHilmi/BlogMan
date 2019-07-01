@@ -2,6 +2,7 @@
 
 const User = use('App/Models/Userinfo')
 const Hash = use('Hash')
+const {validate} = use('Validator')
 
 class LoginController {
     async index({auth, view,response,session}){
@@ -18,6 +19,15 @@ class LoginController {
 
     async login({request, auth, session, response}){
         const {in_param, in_password} = request.all()
+        
+        const validation = await validate(request.all(),{
+            in_param: `required`,
+            in_password:'required'
+        })
+        const usercheck2 = await User.query()
+        .where('username', in_param)
+        .where('status', true)
+        .first()
 
         const usercheck1 = await User.query()
         .where('email', in_param)
@@ -31,8 +41,12 @@ class LoginController {
                 session.put('uid_now',usercheck1.id)
                 return response.redirect('posts')
             }
+            else{
+                session.withErrors(validation.messages()).flashAll()
+                return response.redirect('back')
+            }
         }
-        else{
+        else if(usercheck2){
             const usercheck2 = await User.query()
             .where('username', in_param)
             .where('status', true)
@@ -45,10 +59,17 @@ class LoginController {
                     session.put('uid_now', usercheck2.id)
                     return response.redirect('posts')
                 }
+                else{
+                    session.withErrors(validation.messages()).flashAll()
+                    return response.redirect('back')
+                }
             }
         }
-
-        return response.redirect('error')
+        else{
+            session.withErrors(validation.messages()).flashAll()
+            return response.redirect('back')
+        }
+        
     }
 
     async logout({session, response}){

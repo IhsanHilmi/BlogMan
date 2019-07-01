@@ -10,6 +10,7 @@
 <body>
     <div class="form_login">
     <form class="coverLogin" action="{{route('login')}}" method="post">
+    <font face="Bell Gothic Std Light"><center><p class="txtHeadingLogin"><b>L</b>ogin<b></b></p></center></font><b>
     {{ csrfField() }}
         <input type="text" class="txtUser" placeholder="username/email" name="in_param" id="1">
         <input type="password" class="txtPassLogin" placeholder="password" name="in_password" id="2">
@@ -20,5 +21,7 @@
             <input type="submit" class="btnLogin" value="Login">
         </div>
     </form>
+    {{ elIf('<span class="warning a">⚠ $self</span>', getErrorFor('in_param'), hasErrorFor('in_param')) }}
+    {{ elIf('<span class="warning b">⚠ $self</span>', getErrorFor('in_password'), hasErrorFor('in_password')) }}
 </body>
 </html>

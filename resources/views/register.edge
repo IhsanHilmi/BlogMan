@@ -10,8 +10,8 @@
 <body>
     <div class="form_signup">
     <div class="">
-    <font face="Bell Gothic Std Light"><center><p class="txtHeadingLogin"><b>R</b>egister<b></b></p></center></font><b>
     <form class="coverLogin" action="{{route('register')}}" method="post">
+    <font face="Bell Gothic Std Light"><center><p class="txtHeadingLogin"><b>R</b>egister<b></b></p></center></font><b>
     {{csrfField()}}
         <input type="text" class="txtUser" placeholder= "username" name="in_username" id="1" value="{{ old('in_username', '')}}">
         <input type="email" class="txtEmail" placeholder="email" name="in_email" id="2" value="{{ old('in_email', '')}}">
@@ -20,5 +20,22 @@
    <div><img class="coverLogo2">  </div>
    <div> </div>
     </form>
+    {{ elIf('<span class="warning a">⚠ $self</span>', getErrorFor('in_username'), hasErrorFor('in_username')) }}
+    {{ elIf('<span class="warning b">⚠ $self</span>', getErrorFor('in_email'), hasErrorFor('in_email')) }}
+    {{ elIf('<span class="warning c">⚠ $self</span>', getErrorFor('in_password'), hasErrorFor('in_password')) }}
 </body>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.a').click(function() {
+            $('.a').hide();
+        });
+        $('.b').click(function() {
+            $('.a').hide();
+        });
+        $('.c').click(function() {
+            $('.a').hide();
+        });
+    });
+</script>
 </html>
