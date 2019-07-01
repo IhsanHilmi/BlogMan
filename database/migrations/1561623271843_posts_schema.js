@@ -9,7 +9,7 @@ class PostsSchema extends Schema {
       table.increments()
       table.integer('user_id').references('id').inTable('userinfos').notNullable()
       table.string('title').notNullable()
-      table.string('desc').notNullable()
+      table.text('desc').notNullable()
       table.timestamps()
     })
   }
