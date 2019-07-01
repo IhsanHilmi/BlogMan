@@ -51,10 +51,24 @@
       </div>
     </div>
   </header>
-  @each(post in posts)
-  <a href = "/posts/{{ post.id }}">{{ post.title }}</a><br>{{post.desc}}<br>
-  <p>by {{post.userinfo.username}}</p>
-@endeach
+  
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-10 mx-auto">
+          <h2>Latest Post</h2>
+          <p>
+          @each(post in posts)
+          <div class="blogpost">
+          <div class="titles"><a href = "/posts/{{ post.id }}">{{post.title}}</a></div>
+          <div class="data">{{post.desc}}
+          <p style="margin-top: 10px; margin-bottom: 10px; text-align: right">{{post.created_at}}|by: {{post.userinfo.username}}
+          </div>
+          </div>
+          @endeach
+      </div>
+    </div>
+  </div></article><br><br>
 </body>
 <script src="{{ assetsUrl('jquery.js') }}">
 <script src="{{ assetsUrl('bootstrap.min.js') }}">
