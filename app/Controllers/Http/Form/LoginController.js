@@ -8,8 +8,6 @@ class LoginController {
     async index({auth, view,response,session}){
     
                 return view.render('login')
-            
-            
     }
 
     async login({request, auth, session, response}){
@@ -33,8 +31,8 @@ class LoginController {
             const verified = await Hash.verify(in_password,usercheck1.password)
         
             if(verified){
-                session.put('uid_now',usercheck1.id)
-                return response.redirect('posts')
+                await session.put('uid_now',usercheck1.id)
+                return response.redirect('register')
             }
             else{
                 session.withErrors(validation.messages()).flashAll()
@@ -51,8 +49,8 @@ class LoginController {
                 const verified2 = await Hash.verify(in_password, usercheck2.password)
 
                 if(verified2){
-                    session.put('uid_now', usercheck2.id)
-                    return response.redirect('posts')
+                    await session.put('uid_now', usercheck2.id)
+                    return response.redirect('register')
                 }
                 else{
                     session.withErrors(validation.messages()).flashAll()
@@ -65,11 +63,6 @@ class LoginController {
             return response.redirect('back')
         }
         
-    }
-
-    async logout({session, response}){
-        await session.forget('uid_now')
-        return response.redirect('/')
     }
 }
 

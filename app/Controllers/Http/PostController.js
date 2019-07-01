@@ -7,14 +7,17 @@ const { validate } = use('Validator')
 
 class PostController {
 
-	async index ({view}){
+	async index ({view,session}){
+        
+        const uid = await session.get('uid_now')
+
         const posts = await Post
         .query()
         .with('userinfo')
         .fetch()
 
         if (posts == null) {
-            return view.render('main', {
+            return view.render('welcome', {
                 title: 'No Posts Yet'
             })
         }
@@ -97,13 +100,13 @@ class PostController {
         }
         const post = await Post.find(request.input('in_id'))
 
-        post.user_id = request.input('in_uid')
+        post.user_id = 3
         post.title = request.input('in_title')
         post.desc = request.input('in_desc')
 
         post.save()
 
-        return response.redirect('/posts')
+        return response.redirect('/')
     }
     
     async delete ({params,response,session}){
