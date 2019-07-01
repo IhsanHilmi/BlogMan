@@ -29,6 +29,8 @@ Route.get('/', 'PostController.index').as('posts')
 
 Route.get('/posts/:id', 'PostController.details')
 
+Route.post('/posts/:id', 'PostController.edit')
+
 Route.get('/posts/:id/delete', 'PostController.delete')
 
 //Route.get('/posts/:id', 'PostController.data')
