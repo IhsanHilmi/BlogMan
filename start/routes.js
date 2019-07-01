@@ -43,6 +43,6 @@ Route.get('/myposts/add', 'PostController.add')
 
 Route.post('/myposts/add', 'PostController.input')
 
-Route.get('/logout', 'Form/LoginController.logout').as('logout')
+Route.get('/logout', 'LogoutController.logout').as('logout')
 
 Route.get('/error', 'Form/RegisterController.error')

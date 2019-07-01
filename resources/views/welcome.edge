@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>{{title}}</title>
+  <title>Hello There!</title>
   {{style('bootstrap.min')}}
   {{style('font-awesome')}}
   {{style('style')}}
@@ -21,18 +21,21 @@
           <li class="nav-item">
             <a class="nav-link" href="{{route('/')}}">Home</a>
           </li>
+          @if(uid=="")
           <li class="nav-item">
             <a class="nav-link" href="{{route('/login')}}">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('/register')}}">Sign Up</a>
           </li>
+          @else
           <li class="nav-item">
             <a class="nav-link" href="{{route('/myposts')}}">My Posts</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('/logout')}}">Logout</a>
           </li>
+          @endif
         </ul>
       </div>
     </div>

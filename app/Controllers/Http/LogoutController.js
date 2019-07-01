@@ -2,8 +2,7 @@
 
 class LogoutController {
 	 async logout({auth, response,session}){
-        await auth.logout()
-        response.clearCookie('uid_now')
+        session.forget('uid_now')
         return response.redirect('/')
     }
 }

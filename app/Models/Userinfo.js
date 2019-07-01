@@ -13,6 +13,7 @@ class Userinfo extends Model {
     }
     static boot () {
         super.boot()
+        console.log("aku terpanggil")
     
         /**
          * A hook to hash the user password before saving
