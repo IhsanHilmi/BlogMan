@@ -54,8 +54,12 @@ class PostController {
         })
     }
     
-	async add ({view}){
-		return view.render('posts/add')
+	async add ({view,session}){
+        const uid = session.get('uid_now')
+
+		return view.render('posts/add',{
+            uid:uid
+        })
 	}
 
 	async input ({session,request,response}){
