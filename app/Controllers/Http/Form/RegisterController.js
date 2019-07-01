@@ -6,12 +6,15 @@ const Mail = use('Mail')
 const randomString = require('random-string')
 
 class RegisterController {
-    async index({view}){
+    async index({view,session,response}){
         
-        return view.render('register')
-    }
-    async error({view}){
-        return view.render('error')
+        if (session.get('uid_now')==null) {
+                // statement
+                return view.render('register')
+            } else {
+                // statement
+                return response.redirect('/')
+            }
     }
 
     async register({request, session, response}){

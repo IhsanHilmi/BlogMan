@@ -4,13 +4,16 @@ const User = use('App/Models/Userinfo')
 const Hash = use('Hash')
 
 class LoginController {
-    async index({auth, view, response}){
-        try{
-            await auth.check()
-            return response.redirect('home')
-        }catch(error){
-            return view.render('login')
-        }
+    async index({auth, view,response,session}){
+            
+            if (session.get('uid_now')==null) {
+                // statement
+                return view.render('login')
+            } else {
+                // statement
+                return response.redirect('/')
+            }
+            
     }
 
     async login({request, auth, session, response}){
