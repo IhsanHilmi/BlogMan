@@ -6,8 +6,14 @@ const {validate} = use('Validator')
 
 class LoginController {
     async index({auth, view,response,session}){
-    
-                return view.render('login')
+        const uid = session.get('uid_now')
+        if(uid==null){
+            return view.render('login')
+        }
+        else{
+            console.log(uid)
+            return response.redirect('back')
+        }
             
             
     }

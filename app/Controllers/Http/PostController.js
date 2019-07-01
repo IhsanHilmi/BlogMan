@@ -32,22 +32,25 @@ class PostController {
 
 	async myposts ({view,session}) {
 		
+        const uid = session.get('uid_now')
 		const posts = await Post
   		.query()
   		.with('userinfo')
-        .where('user_id',3)
+        .where('user_id',uid)
         .orderBy('created_at', 'desc')
   		.fetch()
 
         if (posts == null) {
             return view.render('myposts', {
-                title: 'No post yet'
+                title: 'No post yet',
+                uid:uid
             })
         }
 
         return view.render('myposts', {
             title: 'My Posts',
-            posts: posts.toJSON()
+            posts: posts.toJSON(),
+            uid:uid
         })
     }
     
@@ -82,11 +85,12 @@ class PostController {
 
     async details ({session,params,view}) {
         // body... 
-    
+        const uid = session.get('uid_now')
         const post = await Post.find(params.id)
 
         return view.render('posts/edit',{
             post:post.toJSON(),
+            uid:uid
         })
     }
 
