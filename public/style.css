@@ -684,40 +684,6 @@ footer .copyright {
   word-wrap: break-word;
 }
 
-.addpost{
-  padding: 12px 24px;
-}
-
-.post-heading{
-  margin-top: 30%;
-}
-
-.inTitle{
-  width: 100%;
-  font-size: 18px;
-  font-family: 'Calibri';
-}
-
-.postwp{
-  background: url('1.jpg');
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-.publish{
-  color: white;
-  border: none;
-  background: #1a8fd3;
-  outline: none;
-  font-family: 'Calibri';
-  border-radius: 5px;
-  padding: 8px 16px;
-}
-
-.overlay{
-  width: 100%;
-  height:100%;
-}
 
 .warning:hover{
   cursor: pointer;
