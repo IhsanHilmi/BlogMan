@@ -7,9 +7,13 @@ const randomString = require('random-string')
 
 class RegisterController {
     async index({view,session,response}){
-
-                return view.render('register')
-            
+        const uid = session.get('uid_now')
+        if(uid==null){
+            return view.render('register')
+        }
+        else{
+            return response.redirect('back')
+        }
     }
 
     async register({request, session, response}){
