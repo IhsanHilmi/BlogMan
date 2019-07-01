@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html style="margin:0; padding:0">
+<head>
+	<title>ALL POST HERE</title>
+</head>
+<body style="margin:0; padding:0">
+<div style="text-align:right; padding:16px 18px"><a href="{{route('logout')}}">[❌] Logout</a></div>
+@each(post in posts)
+	<a href = "/posts/{{ post.id }}">{{ post.title }}</a><br>{{post.desc}}<br>
+	<p>by {{post.userinfo.username}}</p>
+@endeach
+</body>
+</html>

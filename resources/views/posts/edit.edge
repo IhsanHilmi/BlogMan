@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form action='' method="POST">
+		{{ csrfField() }}
+	<input type="hidden" name="in_id" value={{post.id}}>
+	<input type="hidden" name="in_uid" value={{post.user_id}}>
+	<input type="text" name="in_title" placeholder={{post.title}}>
+	<br>
+	<textarea name="in_desc" placeholder={{post.desc}}></textarea>
+		<button>Submit</button>
+	</form>
+	<a href="/posts/{{post.id}}/delete">DELETE</a>
+
+</body>
+</html>
