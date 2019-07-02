@@ -52,13 +52,16 @@ class RegisterController {
         return response.redirect('back')
     }
 
-    async confirmed({params, session, response}){
+    async confirmed({params, session, view}){
         const user = await User.findBy('token', params.token)
 
         user.token = null
         user.status = true
         await user.save()
-        return response.redirect('/login')
+        const notify = session.flash({notification: 'Email have been confirmed, please login'})
+        return view.render('login',{
+            message:notify
+        })
     }
 }
 
