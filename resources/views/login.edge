@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{style('style')}}
+    {{style('bootstrap.min')}}
+    {{style('font-awesome')}}
+<body>
+    @!include('inc/navbar')
+
+    <div class="form_login">
+    <form class="coverLogin" action="{{route('login')}}" method="post">
+        <br>
+        <br>
+    <font face="Bell Gothic Std Light"><center><p class="txtHeadingLogin"><b>L</b>ogin<b></b></p></center></font><b>
+    {{ csrfField() }}
+        <input type="text" style="height: 45px; width: 39%;" class="txtUser" placeholder="username/email" name="in_param" id="1" required>
+        <input type="password" style="height: 45px;width: 39%;" class="txtPassLogin" placeholder="password" name="in_password" id="2" required>
+        <div>
+            <img class="coverLogo">
+        </div>
+        <div>
+            <input type="submit" class="btnLogin" value="Login">
+        </div>
+    </form>
+    {{message}}
+    @if(flashMessage('notification'))
+    <div class="success">{{ flashMessage('notification') }}</div>
+    @elseif(flashMessage('wrong'))
+    '<span class="warning">⚠ {{flashMessage('wrong')}}</span>
+    @endif
+    {{ elIf('<span class="warning">⚠ $self</span>', getErrorFor('in_param'), hasErrorFor('in_param')) }}
+    {{ elIf('<span class="warning">⚠ $self</span>', getErrorFor('in_password'), hasErrorFor('in_password')) }}
+
+</body>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        if($('.warning').is(':visible')){
+            $('.btnLogin').attr('disabled', true);
+        }
+        $('.warning').click(function() {
+            $('.warning').hide();
+            $('.btnLogin').attr('disabled', false);
+        });
+    });
+</script>
+</html>

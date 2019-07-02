@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+    {{style('bootstrap.min')}}
+  {{style('font-awesome')}}
+  {{style('style')}}
+</head>
+<body>
+    @!include('inc/navbar')
+    <div class="form_signup">
+    <div class="">
+    <form class="coverLogin" action="{{route('register')}}" method="post">
+    <font face="Bell Gothic Std Light"><center><p class="txtHeadingLogin"><b>R</b>egister<b></b></p></center></font><b>
+    {{csrfField()}}
+        <input type="text" style="height: 45px; width: 39%;" class="txtUser" placeholder= "username" name="in_username" id="1" value="{{ old('in_username', '')}}" required>
+        <input type="email" style="height: 45px; width: 39%;" class="txtEmail" placeholder="email" name="in_email" id="2" value="{{ old('in_email', '')}}" required>
+        <input type="password" style="height: 45px; width: 39%;" class="txtPass" placeholder="password" name="in_password" id="3"  value="{{ old('in_password', '')}}" required>
+        <input type="submit"style="height: 45px; width: 39%;" class="btnSignup" value="Register">
+   <div><img class="coverLogo2">  </div>
+   <div> </div>
+    </form>
+    {{ elIf('<span class="warning">⚠ Username already taken</span>', getErrorFor('in_username'), hasErrorFor('in_username')) }}
+    {{ elIf('<span class="warning">⚠ Email already registered</span>', getErrorFor('in_email'), hasErrorFor('in_email')) }}
+    {{ elIf('<span class="warning">⚠ You must fill the password</span>', getErrorFor('in_password'), hasErrorFor('in_password')) }}
+    @if(flashMessage('notification'))
+        <span class="success">ℹ {{flashMessage('notification.message')}}</span>
+    @endif
+</body>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        if($('.warning').is(':visible')){
+            $('.btnSignup').attr('disabled', true);
+        }
+        $('.warning').click(function() {
+            $('.warning').hide();
+            $('.btnSignup').attr('disabled', false);
+        });
+        $('.success').click(function(){
+            window.location.replace("{{route('login')}}");
+        });
+    });
+</script>
+</html>

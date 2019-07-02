@@ -6,10 +6,11 @@
   {{style('bootstrap.min')}}
   {{style('font-awesome')}}
   {{style('style')}}
+  {{style('clean-blog.min')}}
 </head>
 <body style="background:white">
 
-  @!include('inc/navbar')
+@!include('inc/navbar')
   
   <header class="masthead">
     <div class="overlay homeLoad"></div>
@@ -30,11 +31,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9 col-md-10 mx-auto">
-<<<<<<< HEAD
-          <h2>{{title}}</h2>
-=======
-          <h2>Latest Post</h2>
->>>>>>> 9a614e588b39472365ba7b141c75d7d6d0b5dd75
+          <h2>{{title}}</h2><p style="margin:0;"><a href="{{route('/myposts/add')}}">Create Post</a>
           <p>
           @each(post in posts)
            <a href = "/posts/{{ post.id }}">
@@ -42,12 +39,7 @@
           <div class="titles">
          {{post.title}}</div>
           <div class="data">{{post.desc}}
-          <p style="margin-top: 10px; margin-bottom: 10px; text-align: right">{{post.created_at}}|by: 
-            @if(uid==post.user_id)
-             Me
-            @else
-            {{post.userinfo.username}}
-            @endif
+          <p style="margin-top: 10px; margin-bottom: 10px; text-align: right">{{post.created_at}}|by: {{post.userinfo.username}}
           </div>
           </div>
           </a>
