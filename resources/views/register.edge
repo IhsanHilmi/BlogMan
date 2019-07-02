@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign Up</title>
+    {{style('style')}}
     {{style('bootstrap.min')}}
-  {{style('font-awesome')}}
-  {{style('style')}}
+    {{style('font-awesome')}}
 </head>
 <body>
     @!include('inc/navbar')
-    <div class="form_signup">
+    <div class="form_login">
     <div class="">
-    <form class="coverLogin" action="{{route('register')}}" method="post">
+    <form class="coverLogin" action="{{route('register')}}" method="post"><br/><br/>
     <font face="Bell Gothic Std Light"><center><p class="txtHeadingLogin"><b>R</b>egister<b></b></p></center></font><b>
     {{csrfField()}}
         <input type="text" style="height: 45px; width: 39%;" class="txtUser" placeholder= "username" name="in_username" id="1" value="{{ old('in_username', '')}}" required>
