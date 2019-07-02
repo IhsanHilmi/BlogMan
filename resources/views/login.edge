@@ -21,6 +21,10 @@
             <input type="submit" class="btnLogin" value="Login">
         </div>
     </form>
+    {{message}}
+    @if(flashMessage('notification'))
+    <div class="alert alert-success">{{ flashMessage('notification') }}</div>
+    @endif
     {{ elIf('<span class="warning a">⚠ $self</span>', getErrorFor('in_param'), hasErrorFor('in_param')) }}
     {{ elIf('<span class="warning b">⚠ $self</span>', getErrorFor('in_password'), hasErrorFor('in_password')) }}
 </body>
