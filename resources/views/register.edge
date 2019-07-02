@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign Up</title>
-    {{style('style')}}
+    {{style('bootstrap.min')}}
+  {{style('font-awesome')}}
+  {{style('style')}}
 </head>
 <body>
+    @!include('inc/navbar')
     <div class="form_signup">
     <div class="">
     <form class="coverLogin" action="{{route('register')}}" method="post">

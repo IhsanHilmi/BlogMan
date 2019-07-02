@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{style('style')}}
-</head>
+    {{style('bootstrap.min')}}
+    {{style('font-awesome')}}
 <body>
+    @!include('inc/navbar')
     <div class="form_login">
     <form class="coverLogin" action="{{route('login')}}" method="post">
     <font face="Bell Gothic Std Light"><center><p class="txtHeadingLogin"><b>L</b>ogin<b></b></p></center></font><b>
