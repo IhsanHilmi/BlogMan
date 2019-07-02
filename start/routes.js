@@ -29,8 +29,6 @@ Route.get('/', 'PostController.index').as('posts')
 
 Route.get('/myposts', 'PostController.myposts')
 
-Route.post('/myposts', 'PostController.input').as('myposts')
-
 Route.get('/posts/:id', 'PostController.details')
 
 Route.post('/posts/:id', 'PostController.edit')

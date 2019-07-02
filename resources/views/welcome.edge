@@ -35,14 +35,15 @@
           <h2>Latest Post</h2>
           <p>
           @each(post in posts)
+           <a href = "/posts/{{ post.id }}">
           <div class="blogpost">
           <div class="titles">
-          
-          <a href = "/posts/{{ post.id }}">{{post.title}}</a></div>
+         {{post.title}}</div>
           <div class="data">{{post.desc}}
           <p style="margin-top: 10px; margin-bottom: 10px; text-align: right">{{post.created_at}}|by: {{post.userinfo.username}}
           </div>
           </div>
+          </a>
           @endeach
       </div>
     </div>
