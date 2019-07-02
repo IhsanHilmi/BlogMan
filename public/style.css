@@ -403,7 +403,7 @@ img::-moz-selection {
 header.masthead {
   margin-bottom: 35px;
   background: no-repeat center center;
-  min-height: 800px;
+  height: 800px;
   background-attachment: scroll;
   position: relative;
   background-size: cover;
@@ -678,6 +678,15 @@ footer .copyright {
 
 .success{
   background: #20d649;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif!important;
+  font-size: 16px;
+  display: block;
+  top: 465px;
+  position: absolute;
+  width: 625px;
+  padding: 8px 15px;
+  border-radius: 10px;
 }
 
 .titles{
