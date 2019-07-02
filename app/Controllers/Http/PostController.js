@@ -17,11 +17,7 @@ class PostController {
         .orderBy('created_at', 'desc')
         .fetch()
 
-<<<<<<< HEAD
         if (posts.toJSON() == null || posts.toJSON() == "" || !posts.toJSON() || posts.toJSON() == undefined) {
-=======
-        if (posts == null) {
->>>>>>> 9a614e588b39472365ba7b141c75d7d6d0b5dd75
             return view.render('welcome', {
                 title: 'No Posts Yet',
                 uid:uid
@@ -32,8 +28,7 @@ class PostController {
             posts: posts.toJSON(),
             uid:uid
         })
-    }
-
+}
 	async myposts ({view,session}) {
 		
         const uid = session.get('uid_now')
@@ -131,11 +126,29 @@ class PostController {
     }
     
     async delete ({params,response,session}){
-        const post = await Post.find(params.id)
         
+         const uid = session.get('uid_now')
+        if(uid==null){
+            return view.render('login')
+        }
+
+        const post = await Post
+        .query()
+        .where('id',params.id)
+        .where('user_id',uid)
+        .fetch()
+
+        const cek = post
+        if(cek.toJSON()==null || cek.toJSON()==""){
+
         post.delete()
 
-        return response.redirect('/')
+        return response.redirect('/')    
+        }
+        else{
+        return response.redirect('login')
+        }
+        
     }
 
 }
