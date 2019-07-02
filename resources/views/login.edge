@@ -10,8 +10,11 @@
     {{style('font-awesome')}}
 <body>
     @!include('inc/navbar')
+
     <div class="form_login">
     <form class="coverLogin" action="{{route('login')}}" method="post">
+        <br>
+        <br>
     <font face="Bell Gothic Std Light"><center><p class="txtHeadingLogin"><b>L</b>ogin<b></b></p></center></font><b>
     {{ csrfField() }}
         <input type="text" style="height: 45px; width: 39%;" class="txtUser" placeholder="username/email" name="in_param" id="1" required>

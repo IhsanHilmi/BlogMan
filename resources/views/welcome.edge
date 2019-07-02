@@ -38,7 +38,12 @@
           <div class="titles">
          {{post.title}}</div>
           <div class="data">{{post.desc}}
-          <p style="margin-top: 10px; margin-bottom: 10px; text-align: right">{{post.created_at}}|by: {{post.userinfo.username}}
+          <p style="margin-top: 10px; margin-bottom: 10px; text-align: right">{{post.created_at}}|by: 
+            @if(uid==post.user_id)
+             Me
+            @else
+            {{post.userinfo.username}}
+            @endif
           </div>
           </div>
           </a>
