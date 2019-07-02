@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>New Posts</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
 </head>
-<body>
-	<form action='' method="POST">
-		{{ csrfField() }}
-	<input type="hidden" name="in_id" value="{{post.id}}">
-	<input type="hidden" name="in_uid" value="{{post.user_id}}">
-	<input type="text" name="in_title" value="{{post.title}}">
-	<br>
-	<textarea name="in_desc">{{post.desc}}</textarea>
-	@if(uid==post.user_id)
-		<button>Submit</button>
-	</form>
-	<a href="/posts/{{post.id}}/delete">DELETE</a>
-	@else
-	</form>
-	@endif
+  {{style('bootstrap.min')}}
+  {{style('font-awesome')}}
+  {{style('style')}}
+  {{style('clean-blog.min')}}
+<body class="postwp">
+	
+	@!include('inc/navbar')
+
+	<div class="overlay">
+		<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-7 mx-auto">
+			<div class="post-heading">
+			<form class="addpost" action='{{route('myposts')}}' method="POST">
+			{{ csrfField() }}
+				<h2 style="color: white">Create Post</h2>
+				<input type="text" class="inTitle" name="in_title" placeholder="the title">
+				<p style="margin-top:16px;">
+				<textarea name="in_desc" rows="9" class="inDesc inTitle" placeholder="tell your story here..."></textarea>
+				<input type="hidden" name="in_uid" value="{{uid}}">
+			<br>
+			<a href="#" class="btn btn-warning btn-xs">Edit</a>
+			<a href="#" class="btn btn-danger btn-xs">Delete</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<button class="publish">Publish</button>
+			</form>
+			</div>
+			</div>
+		</div>
+		</div></div>
+	</header>
+
 </body>
+<script src="{{ assetsUrl('jquery.js') }}">
+<script src="{{ assetsUrl('bootstrap.min.js') }}">
+<script src="{{ assetsUrl('clean-blog.js') }}">
+
 </html>
