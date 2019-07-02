@@ -33,8 +33,12 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
     $(document).ready(function() {
+        if($('.warning').is(':visible')){
+            $('.btnSignup').attr('disabled', true);
+        }
         $('.warning').click(function() {
             $('.warning').hide();
+            $('.btnSignup').attr('disabled', false);
         });
         $('.success').click(function(){
             window.location.replace("{{route('login')}}");
