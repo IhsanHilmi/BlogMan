@@ -24,7 +24,7 @@
     {{ elIf('<span class="warning">⚠ $self</span>', getErrorFor('in_email'), hasErrorFor('in_email')) }}
     {{ elIf('<span class="warning">⚠ $self</span>', getErrorFor('in_password'), hasErrorFor('in_password')) }}
     @if(flashMessage('notification'))
-        <span class="success d">ℹ {{flashMessage('notification.message')}}</span>
+        <span class="success">ℹ {{flashMessage('notification.message')}}</span>
     @endif
 </body>
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -32,6 +32,9 @@
     $(document).ready(function() {
         $('.warning').click(function() {
             $('.warning').hide();
+        });
+        $('.success').click(function(){
+            window.location.replace("{{route('login')}}");
         });
     });
 </script>

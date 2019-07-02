@@ -33,25 +33,32 @@ class PostController {
 	async myposts ({view,session}) {
 		
         const uid = session.get('uid_now')
-		const posts = await Post
-  		.query()
-  		.with('userinfo')
-        .where('user_id',uid)
-        .orderBy('created_at', 'desc')
-  		.fetch()
+        if(uid==null){
+            return view.render('login')
+        }
+        else{
+            const posts = await Post
+            .query()
+            .with('userinfo')
+            .where('user_id',uid)
+            .orderBy('created_at', 'desc')
+            .fetch()
 
-        if (posts == null) {
+            if (posts == null) {
+                return view.render('myposts', {
+                    title: 'No post yet',
+                    uid:uid
+                })
+            }
+
             return view.render('myposts', {
-                title: 'No post yet',
+                title: 'My Posts',
+                posts: posts.toJSON(),
                 uid:uid
             })
         }
 
-        return view.render('myposts', {
-            title: 'My Posts',
-            posts: posts.toJSON(),
-            uid:uid
-        })
+        
     }
     
 	async add ({view,session}){
@@ -111,7 +118,6 @@ class PostController {
         }
         const post = await Post.find(request.input('in_id'))
 
-        post.user_id = request.input('in_uid')
         post.title = request.input('in_title')
         post.desc = request.input('in_desc')
 

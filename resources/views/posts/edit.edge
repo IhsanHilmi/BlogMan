@@ -23,13 +23,15 @@
 			<form class="addpost" action="/posts/{{post.id}}" method="POST">
 			{{ csrfField() }}
 				<h2 style="color: white">Edit Post</h2>
-				<input type="text" class="inTitle" name="in_title" placeholder="the title">
+				<input type="hidden" name="in_id" value="{{post.id}}">
+				<input type="text" class="inTitle" name="in_title" value="{{post.title}}">
 				<p style="margin-top:16px;">
-				<textarea name="in_desc" rows="9" class="inDesc inTitle" placeholder="tell your story here..."></textarea>
-				<input type="hidden" name="in_uid" value="{{uid}}">
+				<textarea name="in_desc" rows="9" class="inDesc inTitle">{{post.desc}}</textarea>
 			<br>
+			@if(uid==post.user_id)
 			<button class="btn btn-warning btn-xs">Edit</button>
 			<a href="/posts/{{post.id}}/delete" class="btn btn-danger btn-xs">Delete</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			@endif
 			</form>
 			</div>
 			</div>
