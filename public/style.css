@@ -403,7 +403,7 @@ img::-moz-selection {
 header.masthead {
   margin-bottom: 35px;
   background: no-repeat center center;
-  height: 800px;
+  height: 100%;
   background-attachment: scroll;
   position: relative;
   background-size: cover;
@@ -467,6 +467,7 @@ header.masthead .site-heading .subheading {
 header.masthead .post-heading h1 {
   font-size: 35px;
 }
+
 
 header.masthead .post-heading .meta,
 header.masthead .post-heading .subheading {
