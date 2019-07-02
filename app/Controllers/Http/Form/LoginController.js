@@ -6,8 +6,14 @@ const {validate} = use('Validator')
 
 class LoginController {
     async index({auth, view,response,session}){
-    
-                return view.render('login')
+        const uid = session.get('uid_now')
+        if(uid==null){
+            return view.render('login')
+        }
+        else{
+            console.log(uid)
+            return response.redirect('back')
+        }
             
             
     }
@@ -34,43 +40,25 @@ class LoginController {
         
             if(verified){
                 session.put('uid_now',usercheck1.id)
-                return response.redirect('posts')
-            }
-            else{
-                session.withErrors(validation.messages()).flashAll()
-                return response.redirect('back')
+                return response.redirect('/')
             }
         }
         else if(usercheck2){
-            const usercheck2 = await User.query()
-            .where('username', in_param)
-            .where('status', true)
-            .first()
-
-            if(usercheck2){
                 const verified2 = await Hash.verify(in_password, usercheck2.password)
-
                 if(verified2){
                     session.put('uid_now', usercheck2.id)
-                    return response.redirect('posts')
+                    return response.redirect('/')
                 }
-                else{
-                    session.withErrors(validation.messages()).flashAll()
-                    return response.redirect('back')
-                }
-            }
         }
         else{
-            session.withErrors(validation.messages()).flashAll()
+            session.flash({wrong:"Username and/or password is incorrect"})
             return response.redirect('back')
         }
-        
+            session.withErrors(validation.messages()).flashAll()
+            return response.redirect('back')
+       
     }
 
-    async logout({session, response}){
-        await session.forget('uid_now')
-        return response.redirect('/')
-    }
 }
 
 module.exports = LoginController

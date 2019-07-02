@@ -7,9 +7,13 @@ const randomString = require('random-string')
 
 class RegisterController {
     async index({view,session,response}){
-
-                return view.render('register')
-            
+        const uid = session.get('uid_now')
+        if(uid==null){
+            return view.render('register')
+        }
+        else{
+            return response.redirect('back')
+        }
     }
 
     async register({request, session, response}){
@@ -38,17 +42,26 @@ class RegisterController {
             .from('noreply@blogman.com')
             .subject('Please confirm your email address')
         })
-
+        
+        session.flash({
+            notification:{
+                type: 'success',
+                message: 'An email verification has been sent. Check your email !'
+            }
+        })
         return response.redirect('back')
     }
 
-    async confirmed({params, session, response}){
+    async confirmed({params, session, view}){
         const user = await User.findBy('token', params.token)
 
         user.token = null
         user.status = true
         await user.save()
-        return response.redirect('/login')
+        const notify = session.flash({notification: 'Email have been confirmed, please login'})
+        return view.render('login',{
+            message:notify
+        })
     }
 }
 

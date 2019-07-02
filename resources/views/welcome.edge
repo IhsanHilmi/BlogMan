@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{title}}</title>
+  {{style('bootstrap.min')}}
+  {{style('font-awesome')}}
+  {{style('style')}}
+</head>
+<body style="background:white">
+
+  @!include('inc/navbar')
+  
+  <header class="masthead">
+    <div class="overlay homeLoad"></div>
+    <div class="container">
+      <div class="row">
+       <div class="col-lg-4 col-md-6 mx-auto">
+         
+          <div class="post-heading post-title">
+            <h1>Hello,</h1>
+            <span class="subheading">Welcome to Blog Man</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-10 mx-auto">
+          <h2>{{title}}</h2>
+          <p>
+          @each(post in posts)
+           <a href = "/posts/{{ post.id }}">
+          <div class="blogpost">
+          <div class="titles">
+         {{post.title}}</div>
+          <div class="data">{{post.desc}}
+          <p style="margin-top: 10px; margin-bottom: 10px; text-align: right">{{post.created_at}}|by: 
+            @if(uid==post.user_id)
+             Me
+            @else
+            {{post.userinfo.username}}
+            @endif
+          </div>
+          </div>
+          </a>
+          @endeach
+      </div>
+    </div>
+  </div></article><br><br>
+  @if(uid != "")
+    @include('inc/actionButton')
+  @endif
+</body>
+<script src="{{ assetsUrl('jquery.js') }}">
+<script src="{{ assetsUrl('bootstrap.min.js') }}">
+<script src="{{ assetsUrl('clean-blog.js') }}">
+</html>

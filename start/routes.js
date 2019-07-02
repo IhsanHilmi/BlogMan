@@ -15,8 +15,6 @@
 
 const Route = use('Route')
 
-Route.on('/').render('welcome')
-
 Route.get('/register', 'Form/RegisterController.index')
 
 Route.post('/register', 'Form/RegisterController.register').as('register')
@@ -27,17 +25,21 @@ Route.post('/login','Form/LoginController.login').as('login')
 
 Route.get('/register/confirm/:token', 'Form/RegisterController.confirmed')
 
-Route.get('/posts', 'PostController.index').as('posts')
+Route.get('/', 'PostController.index').as('posts')
+
+Route.get('/myposts', 'PostController.myposts')
 
 Route.get('/posts/:id', 'PostController.details')
 
-Route.get('/posts/:id/delete', 'PostController.delete')
-
 Route.post('/posts/:id', 'PostController.edit')
 
-Route.get('/new-post', 'PostController.add')
+Route.get('/posts/:id/delete', 'PostController.delete')
 
-Route.post('/new-post', 'PostController.input')
+//Route.get('/posts/:id', 'PostController.data')
+
+Route.get('/myposts/add', 'PostController.add')
+
+Route.post('/myposts/add', 'PostController.input').as('myposts')
 
 Route.get('/logout', 'LogoutController.logout').as('logout')
 
