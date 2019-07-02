@@ -20,7 +20,7 @@
 		<div class="row">
 			<div class="col-lg-6 col-md-7 mx-auto">
 			<div class="post-heading">
-			<form class="addpost" action="/posts/{{post.id}}" method="POST">
+			<form class="addpost" action="/posts/{{post.id}}/edit" method="POST">
 			{{ csrfField() }}
 			
 				@if(uid==post.user_id)
@@ -39,7 +39,7 @@
 			@endif
 			
 			@if(uid==post.user_id)
-			<a href="{{route('/')}}" class="btn float-right btn-info btn-xs">Back</a>
+			<a href="/myposts" class="btn float-right btn-info btn-xs">Back</a>
 			@else if(uid!=post.user_id)
 			<a href="{{route('/')}}" class="btn float-right btn-info btn-xs">Back</a>
 			@endif			

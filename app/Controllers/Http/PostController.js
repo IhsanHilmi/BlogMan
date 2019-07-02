@@ -104,7 +104,7 @@ class PostController {
         })
     }
 
-    async edit({request,response,session}){
+    async edit({request,response,session,params}){
 
         const validation = await validate(request.all(), {
             in_title: 'required|min:5|max:100',
@@ -122,10 +122,10 @@ class PostController {
 
         await post.save()
 
-        return response.redirect('/posts')
+        return response.redirect('/myposts')
     }
     
-    async delete ({params,response,session}){
+    async delete ({view,params,response,session}){
         
          const uid = session.get('uid_now')
         if(uid==null){
