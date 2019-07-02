@@ -28,8 +28,7 @@ class PostController {
             posts: posts.toJSON(),
             uid:uid
         })
-    }
-
+}
 	async myposts ({view,session}) {
 		
         const uid = session.get('uid_now')
@@ -77,7 +76,7 @@ class PostController {
         })
 
         if (validation.fails()){
-            session.flash({notification: 'Please fill out the form with correctly!'})
+            session.withErrors(validation.messages()).flashAll()
             return response.redirect('back')
         }
 
@@ -113,7 +112,7 @@ class PostController {
         })
 
         if (validation.fails()){
-            session.flash({notification: 'Please fill out the form with correctly!'})
+            session.withErrors(validation.messages()).flashAll()
             return response.redirect('back')
         }
         const post = await Post.find(request.input('in_id'))
@@ -127,11 +126,29 @@ class PostController {
     }
     
     async delete ({params,response,session}){
-        const post = await Post.find(params.id)
         
+         const uid = session.get('uid_now')
+        if(uid==null){
+            return view.render('login')
+        }
+
+        const post = await Post
+        .query()
+        .where('id',params.id)
+        .where('user_id',uid)
+        .fetch()
+
+        const cek = post
+        if(cek.toJSON()==null || cek.toJSON()==""){
+
         post.delete()
 
-        return response.redirect('/')
+        return response.redirect('/')    
+        }
+        else{
+        return response.redirect('login')
+        }
+        
     }
 
 }
