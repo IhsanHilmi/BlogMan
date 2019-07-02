@@ -76,7 +76,7 @@ class PostController {
         })
 
         if (validation.fails()){
-            session.withErrors(validation.messages()).flashAll()
+            session.flash({notification: 'Please fill out the form with correctly!'})
             return response.redirect('back')
         }
 
@@ -104,7 +104,7 @@ class PostController {
         })
     }
 
-    async edit({request,response,session}){
+    async edit({request,response,session,params}){
 
         const validation = await validate(request.all(), {
             in_title: 'required|min:5|max:100',
@@ -112,7 +112,7 @@ class PostController {
         })
 
         if (validation.fails()){
-            session.withErrors(validation.messages()).flashAll()
+            session.flash({notification: 'Please fill out the form with correctly!'})
             return response.redirect('back')
         }
         const post = await Post.find(request.input('in_id'))
@@ -122,10 +122,10 @@ class PostController {
 
         await post.save()
 
-        return response.redirect('/posts')
+        return response.redirect('/myposts')
     }
     
-    async delete ({params,response,session}){
+    async delete ({view,params,response,session}){
         
          const uid = session.get('uid_now')
         if(uid==null){
