@@ -16,15 +16,10 @@
     <form class="coverLogin" action="{{route('register')}}" method="post">
     <font face="Bell Gothic Std Light"><center><p class="txtHeadingLogin"><b>R</b>egister<b></b></p></center></font><b>
     {{csrfField()}}
-
-        <input type="text" style="height: 45px; width: 39%;" class="txtUser" placeholder= "username" name="in_username" id="1" value="{{ old('in_username', '')}}">
-        <input type="email" style="height: 45px; width: 39%;" class="txtEmail" placeholder="email" name="in_email" id="2" value="{{ old('in_email', '')}}">
-        <input type="password" style="height: 45px; width: 39%;"  class="txtPass" placeholder="password" name="in_password" id="3"  value="{{ old('in_password', '')}}">
-        <input type="submit" style="height: 45px; width: 39%;" class="btnSignup" value="Register">
-        <input type="text" class="txtUser" placeholder= "username" name="in_username" id="1" value="{{ old('in_username', '')}}" required>
-        <input type="email" class="txtEmail" placeholder="email" name="in_email" id="2" value="{{ old('in_email', '')}}" required>
-        <input type="password"  class="txtPass" placeholder="password" name="in_password" id="3"  value="{{ old('in_password', '')}}" required>
-        <input type="submit" class="btnSignup" value="Register">
+        <input type="text" style="height: 45px; width: 39%;" class="txtUser" placeholder= "username" name="in_username" id="1" value="{{ old('in_username', '')}}" required>
+        <input type="email" style="height: 45px; width: 39%;" class="txtEmail" placeholder="email" name="in_email" id="2" value="{{ old('in_email', '')}}" required>
+        <input type="password" style="height: 45px; width: 39%;" class="txtPass" placeholder="password" name="in_password" id="3"  value="{{ old('in_password', '')}}" required>
+        <input type="submit"style="height: 45px; width: 39%;" class="btnSignup" value="Register">
    <div><img class="coverLogo2">  </div>
    <div> </div>
     </form>
