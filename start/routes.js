@@ -39,7 +39,7 @@ Route.get('/posts/:id/delete', 'PostController.delete')
 
 Route.get('/myposts/add', 'PostController.add')
 
-Route.post('/myposts/add', 'PostController.input')
+Route.post('/myposts/add', 'PostController.input').as('myposts')
 
 Route.get('/logout', 'LogoutController.logout').as('logout')
 
