@@ -712,6 +712,9 @@ footer .copyright {
   width: 100%;
   font-size: 18px;
   font-family: 'Calibri';
+  padding: 5px;
+  border-radius: 4px;
+  outline: none;
 }
 
 .postwp{
