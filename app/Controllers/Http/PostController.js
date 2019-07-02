@@ -77,7 +77,7 @@ class PostController {
         })
 
         if (validation.fails()){
-            session.withErrors(validation.messages()).flashAll()
+            session.flash({notification: 'Please fill out the form with correctly!'})
             return response.redirect('back')
         }
 
@@ -113,7 +113,7 @@ class PostController {
         })
 
         if (validation.fails()){
-            session.withErrors(validation.messages()).flashAll()
+            session.flash({notification: 'Please fill out the form with correctly!'})
             return response.redirect('back')
         }
         const post = await Post.find(request.input('in_id'))

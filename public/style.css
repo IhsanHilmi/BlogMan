@@ -800,3 +800,35 @@ footer .copyright {
   background: url('w5.png')!important;
   opacity: 1;
 }
+
+.syswarn{
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding: 12px 25px;  
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  z-index: 4;
+  background: rgb(255, 55, 55);
+  cursor: pointer;
+}
+
+.sysinfo{
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding: 12px 25px;  
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  z-index: 4;
+  background: rgb(49, 240, 113);
+  cursor: pointer;
+}
+
+
