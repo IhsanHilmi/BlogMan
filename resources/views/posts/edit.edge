@@ -39,7 +39,7 @@
 			@endif
 			
 			@if(uid==post.user_id)
-			<a href="{{route('/myposts')}}" class="btn float-right btn-info btn-xs">Back</a>
+			<a href="{{route('/')}}" class="btn float-right btn-info btn-xs">Back</a>
 			@else if(uid!=post.user_id)
 			<a href="{{route('/')}}" class="btn float-right btn-info btn-xs">Back</a>
 			@endif			
