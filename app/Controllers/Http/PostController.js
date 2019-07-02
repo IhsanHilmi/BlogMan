@@ -17,11 +17,7 @@ class PostController {
         .orderBy('created_at', 'desc')
         .fetch()
 
-<<<<<<< HEAD
         if (posts.toJSON() == null || posts.toJSON() == "" || !posts.toJSON() || posts.toJSON() == undefined) {
-=======
-        if (posts == null) {
->>>>>>> 9a614e588b39472365ba7b141c75d7d6d0b5dd75
             return view.render('welcome', {
                 title: 'No Posts Yet',
                 uid:uid
