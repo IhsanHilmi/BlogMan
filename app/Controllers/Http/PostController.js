@@ -29,11 +29,11 @@ class PostController {
             uid:uid
         })
 }
-	async myposts ({view,session}) {
+	async myposts ({response,view,session}) {
 		
         const uid = session.get('uid_now')
         if(uid==null){
-            return view.render('login')
+            return response.redirect('/login')
         }
         else{
             const posts = await Post
@@ -60,8 +60,11 @@ class PostController {
         
     }
     
-	async add ({view,session}){
+	async add ({response,view,session}){
         const uid = session.get('uid_now')
+        if(uid==null){
+            return response.redirect('/login')
+        }
 
 		return view.render('posts/add',{
             uid:uid
@@ -128,25 +131,26 @@ class PostController {
     async delete ({view,params,response,session}){
         
          const uid = session.get('uid_now')
-        if(uid==null){
-            return view.render('login')
+         if(uid==null){
+            return response.redirect('/login')
         }
 
-        const post = await Post
+        const cek = await Post
         .query()
         .where('id',params.id)
         .where('user_id',uid)
         .fetch()
 
-        const cek = post
-        if(cek.toJSON()==null || cek.toJSON()==""){
-
-        post.delete()
-
-        return response.redirect('/')    
+        if(cek.toJSON()!=null || cek.toJSON()!=""){
+            const post = await Post
+            .query()
+            .where('id',params.id)
+            .where('user_id',uid)
+            .delete()
+            return response.redirect('/')    
         }
         else{
-        return response.redirect('login')
+            return response.redirect('/login')
         }
         
     }

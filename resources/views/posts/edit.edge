@@ -49,10 +49,16 @@
 		</div>
 		</div></div>
 	</header>
-
+	@if(flashMessage('notification'))
+	<span class="syswarn" id="w">{{flashMessage('notification')}}</span>
+	@endif
 </body>
-<script src="{{ assetsUrl('jquery.js') }}">
-<script src="{{ assetsUrl('bootstrap.min.js') }}">
-<script src="{{ assetsUrl('clean-blog.js') }}">
-
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.syswarn').click(function() {
+            $('.syswarn').hide();
+        });
+    });
+</script>
 </html>
