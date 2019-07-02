@@ -78,13 +78,13 @@ class PostController {
 
         newpost.title = request.input('in_title')
         newpost.desc = request.input('in_desc')
-        newpost.user_id = 3
+        newpost.user_id = request.input('in_uid')
 
         await newpost.save()
 
         session.flash({ notification: 'Post Added!'})
 
-        return response.redirect('/myposts')
+        return response.redirect('/')
 	}
 
     async details ({session,params,view}) {
