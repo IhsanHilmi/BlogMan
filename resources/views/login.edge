@@ -23,9 +23,20 @@
     </form>
     {{message}}
     @if(flashMessage('notification'))
-    <div class="alert alert-success">{{ flashMessage('notification') }}</div>
+    <div class="success">{{ flashMessage('notification') }}</div>
+    @elseif(flashMessage('wrong'))
+    '<span class="warning">⚠ {{flashMessage('wrong')}}</span>
     @endif
-    {{ elIf('<span class="warning a">⚠ $self</span>', getErrorFor('in_param'), hasErrorFor('in_param')) }}
-    {{ elIf('<span class="warning b">⚠ $self</span>', getErrorFor('in_password'), hasErrorFor('in_password')) }}
+    {{ elIf('<span class="warning">⚠ $self</span>', getErrorFor('in_param'), hasErrorFor('in_param')) }}
+    {{ elIf('<span class="warning">⚠ $self</span>', getErrorFor('in_password'), hasErrorFor('in_password')) }}
+
 </body>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.warning').click(function() {
+            $('.warning').hide();
+        });
+    });
+</script>
 </html>
