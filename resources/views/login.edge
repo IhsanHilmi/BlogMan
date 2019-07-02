@@ -14,8 +14,8 @@
     <form class="coverLogin" action="{{route('login')}}" method="post">
     <font face="Bell Gothic Std Light"><center><p class="txtHeadingLogin"><b>L</b>ogin<b></b></p></center></font><b>
     {{ csrfField() }}
-        <input type="text" style="height: 45px; width: 39%;" class="txtUser" placeholder="username/email" name="in_param" id="1">
-        <input type="password" style="height: 45px;width: 39%;" class="txtPassLogin" placeholder="password" name="in_password" id="2">
+        <input type="text" style="height: 45px; width: 39%;" class="txtUser" placeholder="username/email" name="in_param" id="1" required>
+        <input type="password" style="height: 45px;width: 39%;" class="txtPassLogin" placeholder="password" name="in_password" id="2" required>
         <div>
             <img class="coverLogo">
         </div>

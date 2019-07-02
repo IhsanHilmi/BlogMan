@@ -22,7 +22,12 @@
 			<div class="post-heading">
 			<form class="addpost" action="/posts/{{post.id}}" method="POST">
 			{{ csrfField() }}
+			
+				@if(uid==post.user_id)
 				<h2 style="color: white">Edit Post</h2>
+				@else if(uid!=post.user_id)
+				<h2 style="color: white">View Post</h2>
+				@endif
 				<input type="hidden" name="in_id" value="{{post.id}}">
 				<input type="text" class="inTitle" name="in_title" value="{{post.title}}">
 				<p style="margin-top:16px;">
@@ -32,7 +37,12 @@
 			<button class="btn btn-warning btn-xs">Edit</button>
 			<a href="/posts/{{post.id}}/delete" class="btn btn-danger btn-xs">Delete</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 			@endif
+			
+			@if(uid==post.user_id)
 			<a href="{{route('/myposts')}}" class="btn float-right btn-info btn-xs">Back</a>
+			@else if(uid!=post.user_id)
+			<a href="{{route('/')}}" class="btn float-right btn-info btn-xs">Back</a>
+			@endif			
 			</form>
 			</div>
 			</div>
