@@ -65,12 +65,15 @@
           <h2>{{title}}</h2><p style="margin:0;"><a href="{{route('/myposts/add')}}"><a href="#" class="btn btn-primary btn-xs">Create Post</a>
           <p>
           @each(post in posts)
+           <a href = "/posts/{{ post.id }}">
           <div class="blogpost">
-          <div class="titles"><a href = "/posts/{{ post.id }}">{{post.title}}</a></div>
+          <div class="titles">
+         {{post.title}}</div>
           <div class="data">{{post.desc}}
-          <p style="margin-top: 10px; margin-bottom: 10px; text-align: right">{{post.created_at}}
+          <p style="margin-top: 10px; margin-bottom: 10px; text-align: right">{{post.created_at}}|by: {{post.userinfo.username}}
           </div>
           </div>
+          </a>
           @endeach
       </div>
     </div>

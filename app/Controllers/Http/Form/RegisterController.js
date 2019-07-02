@@ -46,7 +46,7 @@ class RegisterController {
         session.flash({
             notification:{
                 type: 'success',
-                message: 'An email verification has been sent!'
+                message: 'An email verification has been sent. Check your email !'
             }
         })
         return response.redirect('back')

@@ -20,17 +20,34 @@
 		<div class="row">
 			<div class="col-lg-6 col-md-7 mx-auto">
 			<div class="post-heading">
-			<form class="addpost" action='{{route('myposts')}}' method="POST">
+			<form class="addpost" action="/posts/{{post.id}}" method="POST">
 			{{ csrfField() }}
+<<<<<<< HEAD
 				<h2 style="color: white">Edit Post</h2>
 				<input type="text" class="inTitle" name="in_title" placeholder="the title">
+=======
+			
+				@if(uid==post.user_id)
+				<h2 style="color: white">Edit Post</h2>
+				@else if(uid!=post.user_id)
+				<h2 style="color: white">View Post</h2>
+				@endif
+				<input type="hidden" name="in_id" value="{{post.id}}">
+				<input type="text" class="inTitle" name="in_title" value="{{post.title}}">
+>>>>>>> 721812433283d37519dc2d40c768d808ae3e8371
 				<p style="margin-top:16px;">
-				<textarea name="in_desc" rows="9" class="inDesc inTitle" placeholder="tell your story here..."></textarea>
-				<input type="hidden" name="in_uid" value="{{uid}}">
+				<textarea name="in_desc" rows="9" class="inDesc inTitle">{{post.desc}}</textarea>
 			<br>
-			<a href="#" class="btn btn-warning btn-xs">Edit</a>
-			<a href="#" class="btn btn-danger btn-xs">Delete</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-			<button class="publish">Publish</button>
+			@if(uid==post.user_id)
+			<button class="btn btn-warning btn-xs">Edit</button>
+			<a href="/posts/{{post.id}}/delete" class="btn btn-danger btn-xs">Delete</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			@endif
+			
+			@if(uid==post.user_id)
+			<a href="{{route('/')}}" class="btn float-right btn-info btn-xs">Back</a>
+			@else if(uid!=post.user_id)
+			<a href="{{route('/')}}" class="btn float-right btn-info btn-xs">Back</a>
+			@endif			
 			</form>
 			</div>
 			</div>

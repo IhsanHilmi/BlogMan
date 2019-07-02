@@ -24,11 +24,18 @@
 			{{ csrfField() }}
 				<h2 style="color: white">Create Post</h2>
 				<input type="text" class="inTitle" name="in_title" placeholder="the title">
-				<p style="margin-top:16px;">
+				<p style=" margin:0px;margin-top:16px;">
 				<textarea name="in_desc" rows="9" class="inDesc inTitle" placeholder="tell your story here..."></textarea>
 				<input type="hidden" name="in_uid" value="{{uid}}">
 			<br>
-			<button class="publish">Publish</button>
+			<div style="width:100%; margin:0; padding:0; display:flex;">
+			<div style="width:50%;">
+			<button class="btn btn-success btn-xs">Submit</button>
+			</div>
+			<div style="width:50%;">
+			<a href="{{route('/myposts')}}" class="btn float-right btn-info btn-xs">Back</a>
+			<div>
+			</div>
 			</form>
 			</div>
 			</div>
