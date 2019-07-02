@@ -31,7 +31,7 @@ Route.get('/myposts', 'PostController.myposts')
 
 Route.get('/posts/:id', 'PostController.details')
 
-Route.post('/posts/:id', 'PostController.edit')
+Route.post('/posts/:id/edit', 'PostController.edit')
 
 Route.get('/posts/:id/delete', 'PostController.delete')
 
